@@ -8,9 +8,7 @@ let computerScore = 0;
 
 function playGame() {
     for (let i = 0 ; i < 5; i++) {
-	const humanSelection = getHumanChoice();
-	const computerSelection = getComputerChoice();
-	playRound(humanSelection, computerSelection);
+	playRound(getHumanChoice(), getComputerChoice());
     }
     if (humanScore == computerScore) {
 	console.log("Draw overall!");
