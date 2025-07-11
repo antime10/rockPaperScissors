@@ -35,41 +35,40 @@ function getComputerChoice() {
 }
 
 function getHumanChoice() {
-    let choice = prompt("What's your move?")
-    console.log(choice);
+    let choice = prompt("What's your move?");
     return choice.toLowerCase();
 }
 
 function playRound(humanChoice, computerChoice) {
-    console.log("computer: ", computerChoice)
+    console.log("computer: ", computerChoice);
     if (humanChoice == computerChoice) {
-	console.log('Draw')
+	console.log('Draw');
     } else if ((humanChoice == "rock" && computerChoice == "scissors") ||
 	       (humanChoice == "scissors" && computerChoice == "paper") ||
 	       (humanChoice == "paper" && computerChoice == "rock")) {
 	humanScore++;
-	console.log(`You win! ${humanChoice} beats ${computerChoice}`)
+	console.log(`You win! ${humanChoice} beats ${computerChoice}`);
     } else {
 	computerScore++;
-	console.log(`You lose! ${computerChoice} beats ${humanChoice}`)
+	console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
     }
 }
 
 function testScript() {
-    playRound("rock", "scissors")
+    playRound("rock", "scissors");
     if (humanScore != 1) { throw new Error("test failed") }
-    playRound("rock", "rock")
+    playRound("rock", "rock");
     if (humanScore != 1) { throw new Error("test failed") }
-    playRound("rock", "paper")
+    playRound("rock", "paper");
     if (humanScore != 1) { throw new Error("test failed") }
-    playRound("scissors", "rock")
+    playRound("scissors", "rock");
     if (humanScore != 1) { throw new Error("test failed") }
-    playRound("rock", "rock")
+    playRound("rock", "rock");
     if (humanScore != 1) { throw new Error("test failed") }
-    playRound("paper", "rock")
+    playRound("paper", "rock");
     if (humanScore != 2) { throw new Error("test failed") }
 
-    let emptyArray = new Array(10000).fill("")
+    let emptyArray = new Array(10000).fill("");
     let testArray = emptyArray.map(i => getComputerChoice());
     let rocks = 0;
     let scissors = 0;
