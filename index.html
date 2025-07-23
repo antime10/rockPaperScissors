@@ -1,11 +1,51 @@
 <!DOCTYPE html>
 <html lang='en-AU'>
-<head>
-  <meta charset='utf-8'>
-  <link rel='stylesheet' href='style.css'>
-  <script src="script.js"></script>
-  <title></title>
-</head>
-<body>
-</body>
+    <head>
+	<meta charset='utf-8'>
+	<link rel='stylesheet' href='style.css'>
+	<script src="script.js" defer></script>
+	<title>Scissors, Paper, Rock</title>
+	<style>
+	 .center {
+	     display: flex;
+	     justify-content: center;
+	     align-items: center;
+	     height: 60vh;
+	 }	     
+	 .playerChoices {
+	     display: flex;
+	     justify-content: center;
+	     gap: 50px;
+	 }
+
+	 .arena {
+	     padding-top: 20px;
+	     display: flex;
+	     justify-content: center;
+	 }
+
+	 #vs {
+	     padding: 0 10px;
+	 }
+	</style>
+    </head>
+    <body>
+	<div class="center">
+	    <div>
+		<h1>Play scissors, paper, rock</h1>
+		<div class="playerChoices">
+		    <button id="scissors">scissors</button>
+		    <button id="paper">paper</button>
+		    <button id="rock">rock</button>
+		</div>
+		<div class="arena">
+		    <div id="myChoice"></div>
+		    <span id="vs">vs</span>
+		    <div id="computerChoice"></div>
+		</div>
+		<div id="results">
+		</div>
+	    </div>
+	</div>
+    </body>
 </html>

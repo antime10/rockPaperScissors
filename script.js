@@ -37,8 +37,24 @@ function getHumanChoice() {
     return choice.toLowerCase();
 }
 
-function playRound(humanChoice, computerChoice) {
-    console.log("computer: ", computerChoice);
+function displayComputerChoice() {
+    let computerChoiceEl = document.querySelector("#computerChoice")    
+    computerChoiceEl.textContent = getComputerChoice()
+}
+
+async function playRound(humanChoice) {
+    document.querySelectorAll("button").forEach(
+	btn => btn.disabled = true
+    )
+    let myChoiceEl = document.querySelector("#myChoice")
+    myChoiceEl.textContent = humanChoice
+    let computerChoiceEl = document.querySelector("#computerChoice")
+    for (let i = 0; i < 10; i++) {
+	console.log(i)
+	await window.setTimeout(displayComputerChoice, 100*i)
+    }
+    let computerChoice = getComputerChoice()
+    computerChoiceEl.textContent = computerChoice
     if (humanChoice == computerChoice) {
 	console.log('Draw');
     } else if ((humanChoice == "rock" && computerChoice == "scissors") ||
@@ -93,3 +109,10 @@ function testScript() {
     console.log("No test failed");
     return 0;
 }
+
+
+document.querySelector(".playerChoices").addEventListener(
+    "click",
+    (e) => playRound(e.target.id)
+)
+							  
