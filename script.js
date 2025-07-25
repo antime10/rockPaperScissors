@@ -38,34 +38,54 @@ function getHumanChoice() {
 }
 
 function displayComputerChoice() {
-    let computerChoiceEl = document.querySelector("#computerChoice")    
-    computerChoiceEl.textContent = getComputerChoice()
+    let computerChoiceElement = document.querySelector("#computerChoice");
+    computerChoiceElement.textContent = getComputerChoice();
+}
+
+function finishGame() {
+    if (humanScore > computerScore) {
+	alert("You win!");
+    } else {
+	alert("Computer wins!");
+    }
 }
 
 async function playRound(humanChoice) {
     document.querySelectorAll("button").forEach(
 	btn => btn.disabled = true
-    )
-    let myChoiceEl = document.querySelector("#myChoice")
-    myChoiceEl.textContent = humanChoice
-    let computerChoiceEl = document.querySelector("#computerChoice")
-    for (let i = 0; i < 10; i++) {
-	console.log(i)
-	await window.setTimeout(displayComputerChoice, 100*i)
-    }
-    let computerChoice = getComputerChoice()
-    computerChoiceEl.textContent = computerChoice
+    );
+    let myChoiceElement = document.querySelector("#myChoice");
+    let computerChoiceElement = document.querySelector("#computerChoice");
+    let resultsElement = document.querySelector("#results");
+    let scoreElement = document.querySelector("#score");
+    let vsElement = document.querySelector("#vs");
+
+    vsElement.style.display = "inline";
+
+    myChoiceElement.textContent = humanChoice;
+    let computerChoice = getComputerChoice();
+    computerChoiceElement.textContent = computerChoice;
     if (humanChoice == computerChoice) {
-	console.log('Draw');
+	results.textContent = 'Draw';
     } else if ((humanChoice == "rock" && computerChoice == "scissors") ||
 	       (humanChoice == "scissors" && computerChoice == "paper") ||
 	       (humanChoice == "paper" && computerChoice == "rock")) {
 	humanScore++;
-	console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+	results.textContent = `You win! ${humanChoice} beats ${computerChoice}`;
     } else {
 	computerScore++;
-	console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
+	results.textContent = `You lose! ${computerChoice} beats ${humanChoice}`;
     }
+
+    score.textContent = `You - ${humanScore} vs Computer - ${computerScore}`;
+
+    if (humanScore == 5 || computerScore == 5) {
+	finishGame();
+	return;
+    }
+    document.querySelectorAll("button").forEach(
+	btn => btn.disabled = false
+    );
 }
 
 function testScript() {
@@ -115,4 +135,3 @@ document.querySelector(".playerChoices").addEventListener(
     "click",
     (e) => playRound(e.target.id)
 )
-							  
